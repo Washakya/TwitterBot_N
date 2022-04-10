@@ -30,7 +30,7 @@ while True:
     #出演作・画像の項目があるかどうか確認
     about = soup.find_all(id=".E5.87.BA.E6.BC.94.E4.BD.9C")
     img_address = soup.find('img').get('src')
-    if not about == [] and not img_address == []:
+    if not about == []:
         #人物名を取得
         name = soup.find("h1").text
         print(name)

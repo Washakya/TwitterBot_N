@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import tweepy
 from PIL import Image
 import io
+from io import BytesIO
 
 #各種APIのセットアップ
 API_KEY = "vn0sBOnejrJ4r72gFwVdMugdd"

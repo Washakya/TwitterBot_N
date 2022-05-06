@@ -3,7 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 import tweepy
 from PIL import Image
-import io
 from io import BytesIO
 
 #各種APIのセットアップ

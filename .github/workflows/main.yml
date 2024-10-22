@@ -9,7 +9,7 @@ env:
   Inm_API_KEY: ${{secrets.INM_API_KEY}}
   Inm_API_KEY_SECRET: ${{secrets.INM_API_KEY_SECRET}}
   Inm_ACCESS_TOKEN: ${{secrets.INM_ACCESS_TOKEN}}
-  Inm_ACCESS_TOKEN_SECRET: ${{secrets.INM_ACCESS_TOKEN_SECRET}
+  Inm_ACCESS_TOKEN_SECRET: ${{secrets.INM_ACCESS_TOKEN_SECRET}}
   Inm_BEARER_TOKEN: ${{secrets.INM_BEARER_TOKEN}}
 
 jobs:

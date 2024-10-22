@@ -32,7 +32,7 @@ pic = requests.get(img_url)
 
 #投稿時間まで待つ
 while True:
-    if datetime.datetime.now().minute == 7:
+    if datetime.datetime.now().minute == 0:
         break
 
 #各種APIの読み込み

@@ -4,19 +4,8 @@ from bs4 import BeautifulSoup
 import tweepy
 from PIL import Image
 from io import BytesIO
-
-#各種APIのセットアップ
-API_KEY = "vn0sBOnejrJ4r72gFwVdMugdd"
-API_SECRET = "LO98Pv5nZYGkJboBgA7OunIHPka1Ow20jTZ8EmCTerxmfxNEMA"
-ACCESS_TOKEN = "1486869932268826625-tpkxWQre2DmjoiwguWctQtkFCfEuJS"
-ACCESS_TOKEN_SECRET = "Unrorr8Xc2crr2w3qTb2yrPxmixOfxuviavroqvfQnKUw"
-
-# APIの認証
-auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
-auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-
-#認証オブジェクト生成
-api = tweepy.API(auth)
+import os
+import datetime
 
 #人物が出るまでおまかせを取得する
 while True:
@@ -29,7 +18,7 @@ while True:
     
     #出演作・画像の項目があるかどうか確認
     about = soup.find_all(id=".E5.87.BA.E6.BC.94.E4.BD.9C")
-    img_address = soup.find('img').get('src')
+    img_address = soup.find('img', class_="mw-file-element").get('src')
     if not about == []:
         #人物名を取得
         name = soup.find("h1").text
@@ -41,9 +30,37 @@ img_url = "https://wiki.yjsnpi.nu" + img_address
 print(img_url)
 pic = requests.get(img_url)
 
+#投稿時間まで待つ
+while True:
+    if datetime.datetime.now().minute == 00:
+        break
+
+#各種APIの読み込み
+API_KEY = os.getenv("Inm_API_KEY")
+API_KEY_SECRET = os.getenv("Inm_API_KEY_SECRET")
+ACCESS_TOKEN = os.getenv("Inm_ACCESS_TOKEN")
+ACCESS_TOKEN_SECRET = os.getenv("Inm_ACCESS_TOKEN_SECRET")
+BEARER_TOKEN = os.getenv("Inm_BEARER_TOKEN")
+
+#クライアントオブジェクトの作成
+client = tweepy.Client(
+    bearer_token = BEARER_TOKEN,
+    consumer_key = API_KEY,
+    consumer_secret = API_KEY_SECRET,
+    access_token = ACCESS_TOKEN,
+    access_token_secret = ACCESS_TOKEN_SECRET
+)
+
+# APIの認証
+auth = tweepy.OAuthHandler(API_KEY, API_KEY_SECRET)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+
+#認証オブジェクト生成
+api = tweepy.API(auth)
+
 #画像オブジェクト生成
 img = BytesIO(pic.content)
 result_img = api.media_upload(filename='sample2.png', file=img)
 
 #投稿
-api.update_status(status=name, media_ids=[result_img.media_id])
+client.create_tweet(text=name, media_ids=[result_img.media_id])

@@ -25,6 +25,9 @@ while True:
         print(name)
         break
 
+if name == "KBTIT":
+    name = "タクヤさん"
+
 #画像URL生成
 img_url = "https://wiki.yjsnpi.nu" + img_address
 print(img_url)

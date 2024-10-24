@@ -66,4 +66,4 @@ img = BytesIO(pic.content)
 result_img = api.media_upload(filename='sample2.png', file=img)
 
 #投稿
-client.create_tweet(text=name + "　#淫夢", media_ids=[result_img.media_id])
+client.create_tweet(text=name + "　#真夏の夜の淫夢", media_ids=[result_img.media_id])

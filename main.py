@@ -7,6 +7,17 @@ from io import BytesIO
 import os
 import datetime
 
+#パスの取得
+dir = os.path.dirname(__file__)
+print(dir + "\BlackList.txt")
+
+#ブラックリスト読み込み
+with open(dir + "\BlackList.txt", encoding='UTF-8') as r:
+    BlackList = r.readlines()
+
+#改行コードを削除
+BlackList = [i.replace("\n", "") for i in BlackList]
+
 #人物が出るまでおまかせを取得する
 while True:
     #淫夢wikiおまかせからURL取得
@@ -22,8 +33,9 @@ while True:
     if not about == []:
         #人物名を取得
         name = soup.find("h1").text
-        print(name)
-        break
+        if not name in BlackList:
+            print(name)
+            break
 
 if name == "KBTIT":
     name = "タクヤさん"

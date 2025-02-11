@@ -34,11 +34,10 @@ while True:
         #人物名を取得
         name = soup.find("h1").text
         if not name in BlackList:
+            if name == "KBTIT":
+                name = "タクヤさん"
             print(name)
             break
-
-if name == "KBTIT":
-    name = "タクヤさん"
 
 #画像URL生成
 img_url = "https://wiki.yjsnpi.nu" + img_address

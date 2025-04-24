@@ -23,21 +23,35 @@ while True:
     #淫夢wikiおまかせからURL取得
     load_url = "https://wiki.yjsnpi.nu/wiki/特別:おまかせ表示"
     html = requests.get(load_url)
-    
+
     #HTML取得
     soup = BeautifulSoup(html.content, "html.parser")
     
     #出演作・画像の項目があるかどうか確認
     about = soup.find_all(id=".E5.87.BA.E6.BC.94.E4.BD.9C")
+
+    #img_address が空白ならループの最初へ
+    if soup.find('img', class_="mw-file-element") == None:
+        continue
+
+    #要素を検索
     img_address = soup.find('img', class_="mw-file-element").get('src')
     if not about == []:
         #人物名を取得
         name = soup.find("h1").text
-        if not name in BlackList:
-            if name == "KBTIT":
-                name = "タクヤさん"
-            print(name)
-            break
+
+        #名前がブラックリストに入っていればループの最初へ
+        if name in BlackList:
+            continue
+            
+        if name == "KBTIT":
+            name = "タクヤさん"
+
+        if name == "だるま親爺":
+            name = "親指"
+
+        print(name)
+        break
 
 #画像URL生成
 img_url = "https://wiki.yjsnpi.nu" + img_address

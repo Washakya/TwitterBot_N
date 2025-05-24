@@ -6,6 +6,7 @@ from PIL import Image
 from io import BytesIO
 import os
 import datetime
+import random
 
 #パスの取得
 dir = os.path.dirname(__file__)
@@ -15,11 +16,20 @@ print(dir + "\BlackList.txt")
 with open(dir + "/BlackList.txt", encoding='UTF-8') as r:
     BlackList = r.readlines()
 
+#人気者リスト読み込み
+with open(dir + "\Popular.txt", encoding="UTF-8") as r:
+    Popular = r.readlines()
+
 #改行コードを削除
 BlackList = [i.replace("\n", "") for i in BlackList]
+Popular = [i.replace("\n", "") for i in Popular]
 
 #人物が出るまでおまかせを取得する
 while True:
+    if random.randint(1,100) <= 3:
+        name = Popular[random.randint(0, len(Popular))-1]
+        print(name)
+        break
     #淫夢wikiおまかせからURL取得
     load_url = "https://wiki.yjsnpi.nu/wiki/特別:おまかせ表示"
     html = requests.get(load_url)

@@ -26,10 +26,10 @@ Popular = [i.replace("\n", "") for i in Popular]
 
 #人物が出るまでおまかせを取得する
 while True:
-    if random.randint(1,100) <= 3:
-        name = Popular[random.randint(0, len(Popular))-1]
-        print(name)
-        break
+    #if random.randint(1,100) <= 3:
+    #    name = Popular[random.randint(0, len(Popular))-1]
+    #    print(name)
+    #    break
     #淫夢wikiおまかせからURL取得
     load_url = "https://wiki.yjsnpi.nu/wiki/特別:おまかせ表示"
     html = requests.get(load_url)

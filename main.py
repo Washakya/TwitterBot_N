@@ -17,7 +17,7 @@ with open(dir + "/BlackList.txt", encoding='UTF-8') as r:
     BlackList = r.readlines()
 
 #人気者リスト読み込み
-with open(dir + "\Popular.txt", encoding="UTF-8") as r:
+with open(dir + "/Popular.txt", encoding="UTF-8") as r:
     Popular = r.readlines()
 
 #改行コードを削除

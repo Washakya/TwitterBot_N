@@ -60,6 +60,9 @@ while True:
         if name == "だるま親爺":
             name = "親指"
 
+        if name == "あつし":
+            name = "篤太郎さん"
+
         print(name)
         break
 

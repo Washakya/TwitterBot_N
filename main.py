@@ -63,6 +63,9 @@ while True:
         if name == "あつし":
             name = "篤太郎さん"
 
+        if name == "蒼武蔵":
+            name = "アナルアサシン"
+
         print(name)
         break
 

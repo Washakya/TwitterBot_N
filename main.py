@@ -53,17 +53,12 @@ while True:
         if name in BlackList:
             continue
             
-        if name == "KBTIT":
-            name = "タクヤさん"
-
-        if name == "だるま親爺":
-            name = "親指"
-
-        if name == "あつし":
-            name = "篤太郎さん"
-
-        if name == "蒼武蔵":
-            name = "アナルアサシン"
+        #リネーム
+        with open(dir + "/Rename.csv", encoding='UTF-8') as f:
+            Rename = csv.reader(f)
+            for n in Rename:
+                if name == n[0]:
+                    name = n[1]
 
         print(name)
         break

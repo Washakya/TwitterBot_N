@@ -10,7 +10,6 @@ import random
 
 #パスの取得
 dir = os.path.dirname(__file__)
-print(dir + "\BlackList.txt")
 
 #ブラックリスト読み込み
 with open(dir + "/BlackList.txt", encoding='UTF-8') as r:

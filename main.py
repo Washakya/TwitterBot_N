@@ -12,7 +12,7 @@ import random
 dir = os.path.dirname(__file__)
 
 #ブラックリスト読み込み
-with open(dir + "/BlackList.txt", encoding='UTF-8') as r:
+with open(dir + "/BlackList.txt", encoding="UTF-8") as r:
     BlackList = r.readlines()
 
 #人気者リスト読み込み

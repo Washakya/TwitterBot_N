@@ -54,8 +54,8 @@ while True:
             continue
             
         #リネーム
-        with open(dir + "/Rename.csv", encoding='UTF-8') as f:
-            Rename = csv.reader(f)
+        with open(dir + "/Rename.csv", encoding='UTF-8') as r:
+            Rename = csv.reader(r)
             for n in Rename:
                 if name == n[0]:
                     name = n[1]

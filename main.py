@@ -5,6 +5,7 @@ import tweepy
 from PIL import Image
 from io import BytesIO
 import os
+import csv
 import datetime
 import random
 

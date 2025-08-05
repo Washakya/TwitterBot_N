@@ -73,6 +73,10 @@ pic = requests.get(img_url)
 while True:
     if datetime.datetime.now().minute == 0:
         break
+        
+#日本時間の日付を取得
+day = str(datetime.datetime.now().month) + "." + str(datetime.datetime.now().day + int((datetime.datetime.now().hour + 9) / 24))
+print(day)
 
 #各種APIの読み込み
 API_KEY = os.getenv("Inm_API_KEY")
@@ -102,4 +106,6 @@ img = BytesIO(pic.content)
 result_img = api.media_upload(filename='sample2.png', file=img)
 
 #投稿
-client.create_tweet(text=name + "　#真夏の夜の淫夢", media_ids=[result_img.media_id])
+if day != "8.10":
+    client.create_tweet(text=name + "　#真夏の夜の淫夢", media_ids=[result_img.media_id])
+

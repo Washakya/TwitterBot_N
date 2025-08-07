@@ -108,8 +108,8 @@ result_img = api.media_upload(filename='sample2.png', file=img)
 #投稿
 if day == "8.8":
     client.create_tweet(text=name + " #真夏の夜の淫夢", media_ids=[result_img.media_id])
-
-if day != "8.10":
+elif day != "8.10":
     client.create_tweet(text=name + "　#真夏の夜の淫夢", media_ids=[result_img.media_id])
 else:
     print("野獣の日!!")
+

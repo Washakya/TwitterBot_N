@@ -26,7 +26,7 @@ Popular = [i.replace("\n", "") for i in Popular]
 
 #人物が出るまでおまかせを取得する
 while True:
-    if random.randint(1,100) <= 3:
+    if random.randint(1,100) <= 1:
         name = Popular[random.randint(0, len(Popular))-1]
         load_url = "https://wiki.yjsnpi.nu/wiki/" + name
     else:
@@ -112,4 +112,5 @@ elif day != "8.10":
     client.create_tweet(text=name + "　#真夏の夜の淫夢", media_ids=[result_img.media_id])
 else:
     print("野獣の日!!")
+
 

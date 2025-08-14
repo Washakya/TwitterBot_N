@@ -41,11 +41,11 @@ while True:
     about = soup.find_all(id=".E5.87.BA.E6.BC.94.E4.BD.9C")
 
     #img_address が空白ならループの最初へ
-    if soup.find('img', class_="mw-file-element") == None:
+    if soup.find("img", class_="mw-file-element") == None:
         continue
 
     #要素を検索
-    img_address = soup.find('img', class_="mw-file-element").get('src')
+    img_address = soup.find("img", class_="mw-file-element").get('src')
     if not about == []:
         #人物名を取得
         name = soup.find("h1").text
@@ -55,7 +55,7 @@ while True:
             continue
             
         #リネーム
-        with open(dir + "/Rename.csv", encoding='UTF-8') as r:
+        with open(dir + "/Rename.csv", encoding="UTF-8") as r:
             Rename = csv.reader(r)
             for n in Rename:
                 if name == n[0]:
@@ -103,13 +103,14 @@ api = tweepy.API(auth)
 
 #画像オブジェクト生成
 img = BytesIO(pic.content)
-result_img = api.media_upload(filename='sample2.png', file=img)
+result_img = api.media_upload(filename="homo.png", file=img)
 
 #投稿
 if day != "8.10":
     client.create_tweet(text=name + "　#真夏の夜の淫夢", media_ids=[result_img.media_id])
 else:
     print("野獣の日!!")
+
 
 
 

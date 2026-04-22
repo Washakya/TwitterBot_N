@@ -26,27 +26,28 @@ Popular = [i.replace("\n", "") for i in Popular]
 
 #人物が出るまでおまかせを取得する
 while True:
-    if random.randint(1,100) <= 1:
+    if random.randint(1,100) <= 3:
         name = Popular[random.randint(0, len(Popular))-1]
         load_url = "https://wiki.yjsnpi.nu/wiki/" + name
     else:
         #淫夢wikiおまかせからURL取得
         load_url = "https://wiki.yjsnpi.nu/wiki/特別:おまかせ表示"
-    html = requests.get(load_url)
 
     #HTML取得
+    html = requests.get(load_url)
     soup = BeautifulSoup(html.content, "html.parser")
-    
-    #出演作・画像の項目があるかどうか確認
-    about = soup.find_all(id=".E5.87.BA.E6.BC.94.E4.BD.9C")
 
-    #img_address が空白ならループの最初へ
-    if soup.find("img", class_="mw-file-element") == None:
-        continue
+    #人物かどうかの判定
+    target_href = "https://wiki.yjsnpi.nu/wiki/登場人物"
+    found = False
+    for a in soup.find_all("a", href=True):
+        if "登場人物一覧" in a.get_text():
+            found = True
+            break
 
+    if found:
     #要素を検索
-    img_address = soup.find("img", class_="mw-file-element").get('src')
-    if not about == []:
+        img_element = soup.find("img", class_="mw-file-element").get('src')
         #人物名を取得
         name = soup.find("h1").text
 
@@ -65,7 +66,7 @@ while True:
         break
 
 #画像URL生成
-img_url = "https://wiki.yjsnpi.nu" + img_address
+img_url = "https://wiki.yjsnpi.nu" + img_element
 print(img_url)
 pic = requests.get(img_url)
 
@@ -106,11 +107,4 @@ img = BytesIO(pic.content)
 result_img = api.media_upload(filename="homo.png", file=img)
 
 #投稿
-if day != "8.10":
-    client.create_tweet(text=name + "　#真夏の夜の淫夢", media_ids=[result_img.media_id])
-else:
-    print("野獣の日!!")
-
-
-
-
+client.create_tweet(text=name + "　#真夏の夜の淫夢", media_ids=[result_img.media_id])
